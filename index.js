@@ -10,7 +10,7 @@ const correctMessage = document.getElementById('correct');
 
 let targetNumber;
 let attempts = 0;
-const maxNumberOfAttempts = 5;
+let maxNumberOfAttempts = 5; // Maria - const/let
 
 // Returns a random number from min (inclusive) to max (exclusive)
 // Usage:
@@ -24,7 +24,7 @@ function getRandomNumber(min, max) {
 
 function checkGuess() {
   // Get value from guess input element
-  const guess = parseInt(guessInput.value, 10);
+  const guess = parseInt(guessInput.value, 10); 
   attempts = attempts + 1;
 
   hideAllMessages();
@@ -43,16 +43,16 @@ function checkGuess() {
     if (guess < targetNumber) {
       tooLowMessage.style.display = '';
     } else {
-      tooLowMessage.style.display = '';
+      tooHighMessage.style.display = ''; // Maria - was tooLowMessage for a second time
     }
 
-    const remainingAttempts = maxNumberOfAttempts - attempts;
+    let remainingAttempts = maxNumberOfAttempts - attempts; // Maria - const/let
 
     numberOfGuessesMessage.style.display = '';
     numberOfGuessesMessage.innerHTML = `You guessed ${guess}. <br> ${remainingAttempts} guesses remaining`;
   }
 
-  if (attempts ==== maxNumberOfAttempts) {
+  if (attempts === maxNumberOfAttempts) { // Maria - extra '='
     submitButton.disabled = true;
     guessInput.disabled = true;
   }
@@ -63,21 +63,21 @@ function checkGuess() {
 }
 
 function hideAllMessages() {
-  for (let elementIndex = 0; elementIndex <= messages.length; elementIndex++) {
+  for (let elementIndex = 0; elementIndex < messages.length; elementIndex++) { // Maria - < instead of <=
     messages[elementIndex].style.display = 'none';
   }
 }
 
-funtion setup() {
+function setup() { // Maria - typo 'funtion'
   // Get random number
   targetNumber = getRandomNumber(1, 100);
   console.log(`target number: ${targetNumber}`);
 
   // Reset number of attempts
-  maxNumberOfAttempts = 0;
+  attempts = 0; // Maria - not max number of attempts
 
   // Enable the input and submit button
-  submitButton.disabeld = false;
+  submitButton.disabled = false; //Maria - typo disabeld
   guessInput.disabled = false;
 
   hideAllMessages();
