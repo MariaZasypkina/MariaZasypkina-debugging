@@ -29,6 +29,18 @@ function checkGuess() {
 
   hideAllMessages();
 
+  if(guess < 1) {
+    numberOfGuessesMessage.style.display = '';
+    numberOfGuessesMessage.innerHTML = `Your guess must be at least 1`;
+    return;
+  }
+
+  if(guess > 99) {
+    numberOfGuessesMessage.style.display = '';
+    numberOfGuessesMessage.innerHTML = `Your guess must be less than or equal to 99`;
+    return;
+  }
+
   if (guess === targetNumber) {
     numberOfGuessesMessage.style.display = '';
     numberOfGuessesMessage.innerHTML = `You made ${attempts} guesses`;
@@ -48,8 +60,10 @@ function checkGuess() {
 
     let remainingAttempts = maxNumberOfAttempts - attempts; // Maria - const/let
 
+    let guessWord = remainingAttempts === 1 ? 'guess' : 'guesses';
+
     numberOfGuessesMessage.style.display = '';
-    numberOfGuessesMessage.innerHTML = `You guessed ${guess}. <br> ${remainingAttempts} guesses remaining`;
+    numberOfGuessesMessage.innerHTML = `You guessed ${guess}. <br> ${remainingAttempts} ${guessWord} remaining`;
   }
 
   if (attempts === maxNumberOfAttempts) { // Maria - extra '='
